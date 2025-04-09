@@ -3,7 +3,7 @@ import gorme from "../assets/ghorme.png";
 
 const Header = () => {
   return (
-    <Stack direction={"row"} alignItems={"center"} justifyContent={"center"} borderBottom={"1px solid black"} mb={"20px"}>
+    <Stack direction={"row"} alignItems={"center"} justifyContent={"center"} mb={"30px"}>
       <img src={gorme} width={"15%"} />
       <Stack>
         <Typography variant="h1" textAlign={"center"} fontSize={"40px"} mb={"10px"}>
