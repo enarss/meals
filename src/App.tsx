@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./layout/colors";
-import "./App.css";
+import { theme } from "./theme/colors";
 import Header from "./features/components/Header";
 import NavBar from "./features/components/NavBar";
 import CssBaseline from "@mui/material/CssBaseline";
