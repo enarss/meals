@@ -3,6 +3,7 @@ import { theme } from "./theme/colors";
 import Header from "./features/components/Header";
 import NavBar from "./features/components/NavBar";
 import CssBaseline from "@mui/material/CssBaseline";
+import RecipeList from "./features/components/RecipeList";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <CssBaseline />
       <NavBar />
       <Header />
+      <RecipeList />
     </ThemeProvider>
   );
 }
