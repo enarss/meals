@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/rootReducer";
+import { AppDispatch, RootState } from "../../../store/rootReducer";
 import { useEffect } from "react";
 import { fetchMeals } from "../services/getRecipesAsyncThunk";
 import { Box, CircularProgress, Grid } from "@mui/material";
@@ -7,9 +7,7 @@ import RecipeCard from "./RecipeCard";
 
 const RecipeList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { meals, isLoading, error } = useSelector(
-    (state: RootState) => state.recipes
-  );
+  const { isLoading, error, data } = useSelector((state: RootState) => state.recipes.meals);
 
   useEffect(() => {
     dispatch(fetchMeals());
@@ -25,7 +23,7 @@ const RecipeList = () => {
 
   return (
     <Grid container spacing={3} justifyContent={"center"}>
-      {meals.map((meal) => (
+      {data.map((meal) => (
         <RecipeCard
           key={meal.idMeal}
           title={meal.strMeal}

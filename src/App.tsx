@@ -1,9 +1,9 @@
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme/colors";
-import Header from "./features/components/Header";
-import NavBar from "./features/components/NavBar";
+import Header from "./layout/Header";
+import NavBar from "./layout/NavBar";
 import CssBaseline from "@mui/material/CssBaseline";
-import RecipeList from "./features/components/RecipeList";
+import RecipeList from "./features/recipe/components/RecipeList";
 
 function App() {
   return (

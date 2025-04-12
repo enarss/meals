@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material"
-import DarkModeSwitch from "./DarkModeSwitch"
-import SearchBar from "./SearchBar"
+import DarkModeSwitch from "../theme/components/DarkModeSwitch"
+import SearchBar from "../features/recipe/components/SearchBar"
 
 const NavBar = () => {
     return (

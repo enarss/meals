@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import gorme from "../assets/ghorme.png";
+import gorme from "../features/recipe/assets/ghorme.png";
 
 const Header = () => {
   return (
