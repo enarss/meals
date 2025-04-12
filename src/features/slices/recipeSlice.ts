@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchMeals } from "../services/getRecipesAsyncThunk";
 
 export interface Meal {
   idMeal: string;
@@ -21,13 +21,6 @@ const initialState: RecipeState = {
   isLoading: false,
   error: null,
 };
-
-export const fetchMeals = createAsyncThunk("recipes/fetchMeals", async () => {
-  const response = await axios.get(
-    "https://www.themealdb.com/api/json/v1/1/search.php?s="
-  );
-  return response.data.meals as Meal[];
-});
 
 const recipeSlice = createSlice({
   name: "recipe",
