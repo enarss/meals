@@ -4,10 +4,15 @@ import { useEffect } from "react";
 import { fetchMeals } from "../services/getRecipesAsyncThunk";
 import { Box, CircularProgress, Grid } from "@mui/material";
 import RecipeCard from "./RecipeCard";
+import { useNavigate } from "react-router";
+import Header from "./Header";
 
 const RecipeList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, error, data } = useSelector((state: RootState) => state.recipes.meals);
+  const { data, isLoading, error } = useSelector(
+    (state: RootState) => state.recipes.meals
+  );
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchMeals());
@@ -22,15 +27,19 @@ const RecipeList = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <Grid container spacing={3} justifyContent={"center"}>
-      {data.map((meal) => (
-        <RecipeCard
-          key={meal.idMeal}
-          title={meal.strMeal}
-          image={meal.strMealThumb}
-        />
-      ))}
-    </Grid>
+    <>
+      <Header />
+      <Grid container spacing={3} justifyContent={"center"}>
+        {data.map((meal) => (
+          <RecipeCard
+            key={meal.idMeal}
+            title={meal.strMeal}
+            image={meal.strMealThumb}
+            onClick={() => navigate(`/recipe/${meal.idMeal}`)}
+          />
+        ))}
+      </Grid>
+    </>
   );
 };
 

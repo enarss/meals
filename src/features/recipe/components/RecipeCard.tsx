@@ -9,12 +9,13 @@ import {
 interface Props {
   title: string;
   image: string;
+  onClick: () => void;
 }
 
-const RecipeCard = ({ title, image }: Props) => {
+const RecipeCard = ({ title, image, onClick }: Props) => {
   return (
     <Card sx={{ width: "350px" }}>
-      <CardActionArea>
+      <CardActionArea onClick={onClick}>
         <CardMedia component="img" height="140" image={image} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
