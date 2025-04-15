@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { fetchDetailMeal } from "../services/getDetailRecipesThunk";
 import { clearRcipeDetail } from "../slices/recipeDetail";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 
 const RecipeDetail = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,11 +32,31 @@ const RecipeDetail = () => {
   if (error) return <h2>{error}</h2>;
   if (!meal) return <h2>No data</h2>;
   return (
-    <div>
-        <Typography variant="h1">{meal.strMeal}</Typography>
+    <Box padding={"20px"}>
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        mb={"30px"}
+        gap={"30px"}
+      >
+        <Stack>
+          <Typography
+            variant="h1"
+            textAlign={"left"}
+            fontSize={"50px"}
+            mb={"10px"}
+          >
+            {meal.strMeal}
+          </Typography>
+          <Typography variant="h5" textAlign={"justify"} fontSize={"18px"}>
+            {meal.strInstructions}
+          </Typography>
+        </Stack>
         <img src={meal.strMealThumb} width={"20%"} />
-    </div>
-  )
+      </Stack>
+    </Box>
+  );
 };
 
 export default RecipeDetail;
