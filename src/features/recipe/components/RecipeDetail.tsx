@@ -4,7 +4,18 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { fetchDetailMeal } from "../services/getDetailRecipesThunk";
 import { clearRcipeDetail } from "../slices/recipeDetail";
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
+import RecipeCard from "./RecipeCard";
 
 const RecipeDetail = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,13 +50,29 @@ const RecipeDetail = () => {
       });
 
     return (
-      <>
-        <ul>
-          {ingredientsList.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </>
+      <div>
+        <Typography variant="h5" fontSize={"30px"}>
+          ingredients:
+        </Typography>
+        <Grid
+          container
+          justifyContent={"center"}
+          paddingY={"30px"}
+          columnSpacing={"30px"}
+          rowSpacing={"40px"}
+        >
+          {ingredientsList.map((item, index) => {
+            const ingredientName = item.split("-")[0].trim().replace(" ", "_");
+            const imageUrl = `https://www.themealdb.com/images/ingredients/${ingredientName}.png`;
+            return (
+              <Grid key={index} justifyItems={"center"}>
+                <img src={imageUrl} width={"200px"} alt="" />
+                <Typography>{item}</Typography>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </div>
     );
   };
 
