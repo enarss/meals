@@ -23,6 +23,32 @@ const RecipeDetail = () => {
     };
   }, [dispatch, id]);
 
+  const renderIngredients = () => {
+    if (!meal) return null;
+
+    const entries = Object.entries(meal);
+    const ingredientsList = entries
+      .filter(
+        ([key, value]) =>
+          key.startsWith("strIngredient") && value && value.trim()
+      )
+      .map(([key, value]) => {
+        const index = key.replace("strIngredient", "");
+        const measure = meal[`strMeasure${index}`];
+        return `${value} - ${measure}`;
+      });
+
+    return (
+      <>
+        <ul>
+          {ingredientsList.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </>
+    );
+  };
+
   if (isLoading)
     return (
       <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -55,6 +81,7 @@ const RecipeDetail = () => {
         </Stack>
         <img src={meal.strMealThumb} width={"20%"} />
       </Stack>
+      {renderIngredients()}
     </Box>
   );
 };

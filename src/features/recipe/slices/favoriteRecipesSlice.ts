@@ -1,0 +1,4 @@
+interface favoriteRecipesState {
+    id: string[];
+}
+
