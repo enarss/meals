@@ -4,18 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { fetchDetailMeal } from "../services/getDetailRecipesThunk";
 import { clearRcipeDetail } from "../slices/recipeDetail";
-import {
-  Box,
-  CircularProgress,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Stack,
-  Typography,
-} from "@mui/material";
-import RecipeCard from "./RecipeCard";
+import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 
 const RecipeDetail = () => {
   const dispatch = useDispatch<AppDispatch>();

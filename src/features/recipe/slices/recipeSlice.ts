@@ -4,7 +4,7 @@ import { fetchMeals } from "../services/getRecipesAsyncThunk";
 export interface Meal {
   idMeal: string;
   strMeal: string;
-  strInstructions: string ;
+  strInstructions: string;
   strMealThumb: string;
   strArea: string;
   [key: string]: string;
