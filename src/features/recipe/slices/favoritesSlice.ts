@@ -5,8 +5,18 @@ interface favoriteRecipesState {
   list: Meal[];
 }
 
+const loadFromLocalStorage = (): Meal[] => {
+  try {
+    const data = localStorage.getItem("favorites");
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error("Error loading from localStorage:", error);
+    return [];
+  }
+};
+
 const initialState: favoriteRecipesState = {
-  list: [],
+  list: loadFromLocalStorage(),
 };
 
 const favoriteSlice = createSlice({
@@ -23,10 +33,13 @@ const favoriteSlice = createSlice({
       } else {
         state.list.push(action.payload);
       }
+
+      localStorage.setItem("favorites", JSON.stringify(state.list));
     },
 
     clearFavorites: (state) => {
       state.list = [];
+      localStorage.removeItem("favorites");
     },
   },
 });
