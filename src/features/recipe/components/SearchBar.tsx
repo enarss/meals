@@ -1,9 +1,11 @@
-import { TextField } from "@mui/material"
+import { Box, TextField } from "@mui/material";
 
 const SearchBar = () => {
-    return (
-        <TextField variant="outlined" label="Search" size="small" sx={{width: "80%"}} />
-    )
-}
+  return (
+    <Box alignContent={"center"} textAlign={"center"} sx={{ width: "75%" }}>
+      <TextField variant="outlined" label="Search" size="small" sx={{width: "100%"}}/>
+    </Box>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

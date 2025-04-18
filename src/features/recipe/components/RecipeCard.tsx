@@ -41,7 +41,7 @@ const RecipeCard = ({ meal, onClick }: Props) => {
           <Typography gutterBottom variant="h5" component="div">
             {meal.strMeal}
           </Typography>
-          <IconButton size="medium" onClick={(e) => handleToggle(e)}>
+          <IconButton onClick={(e) => handleToggle(e)}>
             <motion.div
               key={isFavorite ? "liked" : "unliked"}
               animate={clicked ? { scale: [1, 1.4, 1], opacity: [1, 0.9, 1] } : {}}
