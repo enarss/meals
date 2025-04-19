@@ -86,3 +86,4 @@ const recipeSlice = createSlice({
 
 export default recipeSlice.reducer;
 export const { selectMeals } = recipeSlice.selectors;
+export const { setSearchQuery, setSelectedArea, clearMeals } = recipeSlice.actions;
