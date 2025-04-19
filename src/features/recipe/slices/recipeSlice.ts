@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchMeals } from "../services/getRecipesAsyncThunk";
 import { fetchMealsBySearch } from "../services/getRecipeBySearchThunk";
+import { fetchMealsByArea } from "../services/getRecipeByAreaThunk";
 
 export interface Meal {
   idMeal: string;
@@ -18,7 +19,7 @@ interface RecipeState {
     data: Meal[];
   };
   filters: {
-    selectedArea: string | null;
+    selectedArea: string;
     searchQuery: string | null;
   };
 }
@@ -30,7 +31,7 @@ const initialState: RecipeState = {
     data: [],
   },
   filters: {
-    selectedArea: null,
+    selectedArea: "",
     searchQuery: null,
   },
 };
@@ -62,7 +63,7 @@ const recipeSlice = createSlice({
         state.meals.isLoading = false;
       })
       .addCase(fetchMealsBySearch.pending, (state) => {
-        state.meals.isLoading= true;
+        state.meals.isLoading = true;
         state.meals.error = null;
       })
       .addCase(fetchMealsBySearch.fulfilled, (state, action) => {
@@ -73,6 +74,18 @@ const recipeSlice = createSlice({
         state.meals.isLoading = false;
         state.meals.error = action.error.message || "Error";
       })
+      .addCase(fetchMealsByArea.pending, (state) => {
+        state.meals.isLoading = true;
+        state.meals.error = null;
+      })
+      .addCase(fetchMealsByArea.fulfilled, (state, action) => {
+        state.meals.isLoading = false;
+        state.meals.data = action.payload;
+      })
+      .addCase(fetchMealsByArea.rejected, (state, action) => {
+        state.meals.isLoading = false;
+        state.meals.error = action.error.message || "Error";
+      });
   },
   selectors: {
     selectMeals(state) {

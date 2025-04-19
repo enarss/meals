@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
@@ -41,25 +34,24 @@ const RecipeCard = ({ meal, onClick }: Props) => {
           <Typography gutterBottom variant="h5" component="div">
             {meal.strMeal}
           </Typography>
-          <IconButton onClick={(e) => handleToggle(e)}>
+          <motion.div
+            key={isFavorite ? "liked" : "unliked"}
+            animate={clicked ? { scale: [1, 1.3, 1], opacity: [1, 0.9, 1] } : {}}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            whileHover={{ scale: 1.3 }}
+          >
             <motion.div
-              key={isFavorite ? "liked" : "unliked"}
-              animate={clicked ? { scale: [1, 1.4, 1], opacity: [1, 0.9, 1] } : {}}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              animate={isFavorite ? { scale: [1, 1.1, 1] } : {}}
+              transition={{
+                repeat: Infinity,
+                duration: 1.5,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
             >
-              <motion.div
-                animate={isFavorite ? { scale: [1, 1.1, 1] } : {}}
-                transition={{
-                  repeat: Infinity,
-                  duration: 1.5,
-                  repeatType: "reverse",
-                  ease: "easeInOut",
-                }}
-              >
-                <FavoriteIcon color={iconColor} />
-              </motion.div>
+              <FavoriteIcon color={iconColor} onClick={(e) => handleToggle(e)} />
             </motion.div>
-          </IconButton>
+          </motion.div>
         </CardContent>
       </CardActionArea>
     </Card>
