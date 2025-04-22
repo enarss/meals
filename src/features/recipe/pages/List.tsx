@@ -5,10 +5,12 @@ import { fetchMeals } from "../services/getRecipesAsyncThunk";
 import { Box, CircularProgress } from "@mui/material";
 import Header from "../components/Header";
 import RecipeList from "../components/RecipeList";
+import { selectMeals } from "../slices/recipeSlice";
 
 const List = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, isLoading, error } = useSelector((state: RootState) => state.recipes.meals);
+
+  const { data, isLoading, error } = useSelector((state: RootState) => selectMeals({recipe:state.recipes}));
 
   useEffect(() => {
     dispatch(fetchMeals());

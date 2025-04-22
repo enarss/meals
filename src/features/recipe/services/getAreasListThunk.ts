@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { Meal } from "../slices/recipeSlice";
 
-export const fetchMeals = createAsyncThunk<Meal[], void, { rejectValue: string }>(
-  "recipes/fetchMeals",
+export const fetchAreas = createAsyncThunk<string[], void, { rejectValue: string }>(
+  "recipes/fetchAreas",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("https://www.themealdb.com/api/json/v1/1/search.php?s=");
-      return response.data.meals as Meal[];
+      const response = await axios.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
+      return (response.data.meals || []).map((a: any) => a.strArea);
     } catch (err) {
       if (err instanceof AxiosError) {
         const serverMessage = err.response?.data?.message;

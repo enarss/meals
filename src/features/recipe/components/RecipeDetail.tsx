@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { fetchDetailMeal } from "../services/getDetailRecipesThunk";
 import { clearRcipeDetail } from "../slices/recipeDetail";
 import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
+import StyledImage from "../styled/StyledImage";
 
 const RecipeDetail = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -95,7 +96,7 @@ const RecipeDetail = () => {
             {meal.strInstructions}
           </Typography>
         </Stack>
-        <img src={meal.strMealThumb} width={"20%"} />
+        <StyledImage src={meal.strMealThumb} />
       </Stack>
       {renderIngredients()}
     </Box>
