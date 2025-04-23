@@ -37,10 +37,8 @@ const AreaFilter = () => {
         dispatch(fetchMealsByArea(value));
       }
     },
-    [dispatch, selected]
+    [dispatch]
   );
-
-  console.log(areas);
 
   return (
     <Box alignContent={"center"} textAlign={"center"} width={"25%"}>

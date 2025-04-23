@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { Meal } from "../slices/recipeSlice";
+import { RootState } from "../../../store/rootReducer";
 
-export const fetchMeals = createAsyncThunk<Meal[], void, { rejectValue: string }>(
+export const fetchMeals = createAsyncThunk<Meal[], void, { state: RootState; rejectValue: string }>(
   "recipes/fetchMeals",
   async (_, { rejectWithValue }) => {
     try {
@@ -15,5 +16,11 @@ export const fetchMeals = createAsyncThunk<Meal[], void, { rejectValue: string }
       }
       return rejectWithValue("An unexpected error occurred");
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { recipes } = getState();
+      return recipes.meals.data.length === 0;
+    },
   }
 );
