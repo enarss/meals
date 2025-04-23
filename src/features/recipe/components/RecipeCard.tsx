@@ -29,7 +29,7 @@ const RecipeCard = ({ meal, onClick }: Props) => {
   return (
     <Card sx={{ width: "350px" }}>
       <CardActionArea onClick={onClick}>
-        <CardMedia component="img" height="140" image={meal.strMealThumb} />
+        <CardMedia component="img" height="160" image={meal.strMealThumb} />
         <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography gutterBottom variant="h5" component="div">
             {meal.strMeal}
